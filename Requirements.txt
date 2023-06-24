@@ -1,0 +1,6 @@
+1.Create FE for view and add blogs
+2.Create BE  to store blogs
+3.Create and store likes/comments
+4.signIn , signOut features
+5.Dark theme
+
