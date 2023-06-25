@@ -1,13 +1,81 @@
 import Image from 'next/image'
+import Head from "next/head";
+import Navbar from "../app/Components/Navbar";
+import Footer from "../app/Components/Footer";
+import Header from "../app/Components/Header";
+import BlogHeader from "../app/Components/BlogHeader";
+import { getAllBlogPosts, getAllTopics } from "../app/Lib/Data";
+
+export const getStaticProps = () => {
+  const allBlogs = getAllBlogPosts();
+  const allTopics = getAllTopics();
+  return {
+    props: {
+      blogs: allBlogs,
+      topics: allTopics,
+    },
+  };
+};
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          <code className="font-mono font-bold">Babu Miya Mohammad</code>
-        </p>
+    <>
+      <Head>
+        <title>Bits-0f-C0de 🚀</title>
+        <meta name="title" content="Bits-0f-C0de 🚀" />
+        <meta
+          name="description"
+          content="Tech blogs and articles on various topics related to Software Development"
+        />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://blogs.soumya-jit.tech/" />
+        <meta property="og:title" content="Bits-0f-C0de 🚀" />
+        <meta
+          property="og:description"
+          content="Tech blogs and articles on various topics related to Software Development"
+        />
+        <meta
+          property="og:image"
+          content="https://raw.githubusercontent.com/soumyajit4419/Bits-0f-C0de/main/Extra/sc.png"
+        />
+
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://blogs.soumya-jit.tech/" />
+        <meta property="twitter:title" content="Bits-0f-C0de 🚀" />
+        <meta
+          property="twitter:description"
+          content="Tech blogs and articles on various topics related to Software Development"
+        />
+        <meta
+          property="twitter:image"
+          content="https://raw.githubusercontent.com/soumyajit4419/Bits-0f-C0de/main/Extra/sc.png"
+        />
+      </Head>
+
+      <div className="min-h-screen relative bg-white dark:bg-gray-900">
+      <Navbar topics={topics} />
+        <Header topic={undefined} topicName={undefined} topicCount={undefined} />
+
+        <div className="px-0.5 md:px-7 pb-14 pt-6 mx-auto">
+          <div className="flex flex-wrap">
+            {/* {blogs &&
+              blogs.map(
+                (blog) =>
+                  blog.data.isPublished && (
+                    <BlogHeader
+                      key={blog.data.Id}
+                      data={blog.data}
+                      content={blog.content}
+                      readTime={blog.readTime.text}
+                    />
+                  )
+              )} */}
+          </div>
+        </div>
+
+        <Footer />
       </div>
-    </main>
-  )
+    </>
+  );
 }
